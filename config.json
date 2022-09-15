@@ -1,0 +1,207 @@
+{
+  "source-project": "SoftServe - Abiliton Dashboard",
+  "target-project": "Metrics",
+  "query": "project = SSAD AND createdDate >= '2021/10/21' ORDER BY Rank ASC",
+  "using-jira-cloud": false,
+  "workspace": "C:\\temp\\jira\\jira-azuredevops-migrator",
+  "epic-link-field": "Epic Link",
+  "sprint-field": "Sprint",
+  "download-options": 7,
+  "batch-size": 20,
+  "log-level": "Info",
+  "attachment-folder": "Attachments",
+  "user-mapping-file": "users.txt",
+  "base-area-path": "Migrated",
+  "base-iteration-path": "Migrated",
+  "ignore-failed-links": true,
+  "process-template": "Scrum custom",
+  "link-map": {
+    "link": [
+      {
+        "source": "Epic",
+        "target": "System.LinkTypes.Hierarchy-Reverse"
+      },
+      {
+        "source": "Parent",
+        "target": "System.LinkTypes.Hierarchy-Reverse"
+      },
+      {
+        "source": "Relates",
+        "target": "System.LinkTypes.Related"
+      },
+      {
+        "source": "Duplicate",
+        "target": "System.LinkTypes.Duplicate-Forward"
+      }
+    ]
+  },
+  "type-map": {
+    "type": [
+      {
+        "source": "Feature",
+        "target": "User Story"
+      },
+      {
+        "source": "Epic",
+        "target": "Epic"
+      },
+      {
+        "source": "Story",
+        "target": "User Story"
+      },
+      {
+        "source": "Bug",
+        "target": "Bug"
+      },
+      {
+        "source": "Defect",
+        "target": "Bug"
+      },
+      {
+        "source": "Task",
+        "target": "Task"
+      },
+      {
+        "source": "Sub-task",
+        "target": "Task"
+      },
+      {
+        "source": "Sub-Task",
+        "target": "Task"
+      },
+      {
+        "source": "Spike",
+        "target": "Issue"
+      },
+      {
+        "source": "Test",
+        "target": "Test Case"
+      }
+    ]
+  },
+  "field-map": {
+    "field": [
+      {
+        "source": "summary",
+        "target": "System.Title",
+        "mapper": "MapTitle"
+      },
+      {
+        "source": "assignee",
+        "target": "System.AssignedTo",
+        "mapper": "MapUser"
+      },
+      {
+        "source": "description",
+        "target": "System.Description",
+        "mapper": "MapRendered"
+      },
+      {
+        "source": "priority",
+        "target": "Microsoft.VSTS.Common.Priority",
+        "mapping": {
+          "values": [
+            {
+              "source": "Blocker",
+              "target": "1"
+            },
+            {
+              "source": "Critical",
+              "target": "1"
+            },
+            {
+              "source": "Highest",
+              "target": "1"
+            },
+            {
+              "source": "Major",
+              "target": "2"
+            },
+            {
+              "source": "High",
+              "target": "2"
+            },
+            {
+              "source": "Medium",
+              "target": "3"
+            },
+            {
+              "source": "Low",
+              "target": "3"
+            },
+            {
+              "source": "Lowest",
+              "target": "4"
+            },
+            {
+              "source": "Minor",
+              "target": "4"
+            },
+            {
+              "source": "Trivial",
+              "target": "4"
+            }
+          ]
+        }
+      },
+      {
+        "source": "Sprint",
+        "source-type": "name",
+        "target": "System.IterationPath",
+        "mapper": "MapSprint"
+      },
+      {
+        "source": "labels",
+        "target": "System.Tags",
+        "mapper": "MapTags"
+      },
+      {
+        "source": "comment",
+        "target": "System.History",
+        "mapper": "MapRendered"
+      },
+      {
+        "source": "status",
+        "target": "System.State",
+        "for": "Task,Bug,Product Backlog Item,Epic,Feature",
+        "mapping": {
+          "values": [
+            {
+              "source": "Open",
+              "target": "To Do"
+            },
+            {
+              "source": "In Progress",
+              "target": "Doing"
+            },
+            {
+              "source": "Resolved",
+              "target": "Resolved"
+            },
+            {
+              "source": "Done",
+              "target": "Done"
+            }
+          ]
+        }
+      },
+      {
+        "source": "Story Points",
+        "source-type": "name",
+        "target": "Microsoft.VSTS.Scheduling.Effort",
+        "not-for": "Task"
+      },
+      {
+        "source": "timeestimate",
+        "target": "Microsoft.VSTS.Scheduling.RemainingWork",
+        "mapper": "MapRemainingWork",
+        "for": "Bug,Task,Issue"
+      },
+      {
+        "source": "description",
+        "target": "Microsoft.VSTS.TCM.ReproSteps",
+        "for": "Bug"
+      }
+    ]
+  }
+}
